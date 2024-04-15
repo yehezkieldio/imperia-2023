@@ -1,0 +1,416 @@
+datasource db {
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  extensions = [timescaledb]
+}
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+// USER
+
+model User {
+  id              String            @id @default(cuid())
+  discordId       String
+  pity            Int               @default(0)
+  Balance         Balance?
+  Progression     Progression?
+  RewardsClaim    RewardsClaim?
+  WishHistory     WishHistory[]
+  CardDeck        CardDeck[]
+  UserCard        UserCard[]
+  UserDuelHistory UserDuelHistory[]
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+
+  @@unique([discordId])
+}
+
+model UserDuelHistory {
+  id          String  @id @default(cuid())
+  User        User    @relation(fields: [userId], references: [id])
+  userId      String
+  duelStarted Duel[]  @relation("DuelStarted")
+  duelJoined  Duel[]  @relation("DuelJoined")
+  duelWon     Duel[]  @relation("DuelWon")
+  Duel        Duel?   @relation(fields: [duelId], references: [id])
+  duelId      String?
+
+  @@unique([userId, duelId])
+}
+
+model Progression {
+  id         String @id @default(cuid())
+  user       User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId     String
+  level      Int    @default(1)
+  experience Int    @default(0)
+
+  @@unique([userId])
+}
+
+model Balance {
+  id      String @id @default(cuid())
+  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId  String
+  crystal Int    @default(0)
+  fate    Int    @default(0)
+
+  @@unique([userId])
+}
+
+model RewardsClaim {
+  id     String    @id @default(cuid())
+  user   User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+  hour   DateTime? @default(now())
+  daily  DateTime? @default(now())
+  weekly DateTime? @default(now())
+
+  @@unique([userId])
+}
+
+// END USER
+
+// CARD
+
+model Card {
+  id                String             @id @default(cuid())
+  name              String
+  stock             Int                @default(0)
+  CardBaseStatistic CardBaseStatistic?
+  element           ElementType
+  RarityCard        RarityCard[]
+  WishHistory       WishHistory[]
+  UserCard          UserCard[]
+  Wish              Wish?              @relation(fields: [wishId], references: [id])
+  wishId            String?
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  SkillCard         SkillCard[]
+
+  @@index([name])
+}
+
+enum ElementType {
+  FIRE
+  WATER
+  ICE
+  LIGHTNING
+  EARTH
+  NATURE
+  WIND
+}
+
+model CardBaseStatistic {
+  id             String @id @default(cuid())
+  Card           Card   @relation(fields: [cardId], references: [id])
+  cardId         String
+  attack         Int    @default(0)
+  defense        Int    @default(0)
+  health         Int    @default(0)
+  speed          Int    @default(0)
+  mana           Int    @default(0)
+  accuracy       Float  @default(0)
+  criticalChance Float  @default(0)
+  criticalDamage Float  @default(0)
+
+  @@unique([cardId])
+}
+
+model Rarity {
+  id             String           @id @default(cuid())
+  name           RarityType
+  probability    Int              @default(0)
+  RarityCard     RarityCard[]
+  RarityUserCard RarityUserCard[]
+
+  @@index([name])
+}
+
+enum RarityType {
+  COMMON
+  RARE
+  SUPER_RARE
+  SPECIALLY_SUPER_RARE
+  ULTRA_RARE
+}
+
+model RarityCard {
+  id       String @id @default(cuid())
+  Rarity   Rarity @relation(fields: [rarityId], references: [id])
+  rarityId String
+  Card     Card   @relation(fields: [cardId], references: [id])
+  cardId   String
+
+  @@index([rarityId, cardId])
+}
+
+// END CARD
+
+// CARD DECK
+
+model CardDeck {
+  id        String     @id @default(cuid())
+  name      String
+  User      User       @relation(fields: [userId], references: [id])
+  userId    String
+  UserCard  UserCard[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  @@index([name])
+}
+
+// END CARD DECK
+
+// USER CARD
+
+model UserCard {
+  id                 String           @id @default(cuid())
+  User               User             @relation(fields: [userId], references: [id])
+  userId             String
+  Card               Card             @relation(fields: [cardId], references: [id])
+  cardId             String
+  RarityUserCard     RarityUserCard[]
+  CardDeck           CardDeck?        @relation(fields: [cardDeckId], references: [id])
+  cardDeckId         String?
+  createdAt          DateTime         @default(now())
+  updatedAt          DateTime         @updatedAt
+  DuelActionAttacker DuelAction[]     @relation("DuelActionAttacker")
+  DuelActionDefender DuelAction[]     @relation("DuelActionDefender")
+
+  @@index([userId, cardId])
+}
+
+model RarityUserCard {
+  id                  String               @id @default(cuid())
+  quantity            Int                  @default(0)
+  UserCard            UserCard             @relation(fields: [userCardId], references: [id])
+  userCardId          String
+  Rarity              Rarity               @relation(fields: [rarityId], references: [id])
+  rarityId            String
+  UserSkillCard       UserSkillCard[]
+  UserCardStatistic   UserCardStatistic?
+  UserCardProgression UserCardProgression?
+
+  @@index([userCardId, rarityId])
+}
+
+model UserCardStatistic {
+  id             String         @id @default(cuid())
+  RarityUserCard RarityUserCard @relation(fields: [userCardId], references: [id])
+  userCardId     String
+  attack         Int            @default(0)
+  defense        Int            @default(0)
+  health         Int            @default(0)
+  speed          Int            @default(0)
+  mana           Int            @default(0)
+  accuracy       Float          @default(0)
+  criticalChance Float          @default(0)
+  criticalDamage Float          @default(0)
+
+  @@unique([userCardId])
+}
+
+model UserCardProgression {
+  id             String         @id @default(cuid())
+  RarityUserCard RarityUserCard @relation(fields: [userCardId], references: [id])
+  userCardId     String
+  level          Int            @default(1)
+  experience     Int            @default(0)
+
+  @@unique([userCardId])
+}
+
+// END USER CARD
+
+// SKILL
+
+model Skill {
+  id          String      @id @default(cuid())
+  name        String
+  description String
+  effect      EffectTypes
+  target      TargetTypes
+  cost        Int         @default(0)
+  cooldown    Int         @default(0)
+  SkillCard   SkillCard[]
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  @@index([name, effect, target])
+}
+
+enum TargetTypes {
+  SELF
+  ENEMY
+  ALL_ENEMIES
+  RANDOM_ENEMY
+  ALL_ALLIES
+  RANDOM_ALLY
+}
+
+enum EffectTypes {
+  DAMAGE
+  HEAL
+  DRAW
+  DISCARD
+  SHUFFLE
+  BUFF
+  DEBUFF
+}
+
+model SkillCard {
+  id            String          @id @default(cuid())
+  Skill         Skill           @relation(fields: [skillId], references: [id])
+  skillId       String
+  Card          Card            @relation(fields: [cardId], references: [id])
+  cardId        String
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  UserSkillCard UserSkillCard[]
+}
+
+model UserSkillCard {
+  id               String         @id @default(cuid())
+  SkillCard        SkillCard      @relation(fields: [skillCardId], references: [id])
+  skillCardId      String
+  RarityUserCard   RarityUserCard @relation(fields: [rarityUserCardId], references: [id])
+  rarityUserCardId String
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+}
+
+// END SKILL
+
+// DUEL
+
+model Duel {
+  id              String            @id @default(cuid())
+  active          Boolean           @default(false)
+  status          DuelStatus
+  startedAt       DateTime?
+  endedAt         DateTime?
+  playerOne       UserDuelHistory   @relation("DuelStarted", fields: [playerOneId], references: [id])
+  playerOneId     String
+  playerTwo       UserDuelHistory   @relation("DuelJoined", fields: [playerTwoId], references: [id])
+  playerTwoId     String
+  winner          UserDuelHistory?  @relation("DuelWon", fields: [winnerId], references: [id])
+  winnerId        String?
+  UserDuelHistory UserDuelHistory[]
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  DuelRound       DuelRound[]
+
+  @@index([active, status, playerOneId, playerTwoId, winnerId])
+}
+
+enum DuelStatus {
+  STARTED
+  FINISHED
+}
+
+model DuelRound {
+  id         String       @id @default(cuid())
+  round      Int
+  Duel       Duel         @relation(fields: [duelId], references: [id])
+  duelId     String
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+  DuelAction DuelAction[]
+
+  @@index([duelId])
+}
+
+model DuelAction {
+  id           String     @id @default(cuid())
+  actionData   Json
+  actionType   ActionType @relation(fields: [actionTypeId], references: [id])
+  actionTypeId String
+  attacker     UserCard   @relation("DuelActionAttacker", fields: [attackerId], references: [id])
+  attackerId   String
+  defender     UserCard?  @relation("DuelActionDefender", fields: [defenderId], references: [id])
+  defenderId   String?
+  DuelRound    DuelRound  @relation(fields: [duelRoundId], references: [id])
+  duelRoundId  String
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  @@index([actionTypeId, attackerId, defenderId, duelRoundId])
+}
+
+model ActionType {
+  id         String         @id @default(cuid())
+  name       String
+  effects    ActionEffect[]
+  DuelAction DuelAction[]
+
+  @@index([name])
+}
+
+model ActionEffect {
+  id           String      @id @default(cuid())
+  targetType   TargetType
+  effectData   Json
+  ActionType   ActionType? @relation(fields: [actionTypeId], references: [id])
+  actionTypeId String?
+
+  @@index([targetType, actionTypeId])
+}
+
+enum TargetType {
+  SELF
+  OPPONENT
+  OWNED_CARD
+  OPPONENT_CARD
+}
+
+// END DUEL
+
+// WISH
+
+model Wish {
+  id           String        @id @default(cuid())
+  name         String
+  description  String?
+  cost         Int           @default(1)
+  rarityWeight Json?
+  Card         Card[]
+  WishHistory  WishHistory[]
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  @@index([name])
+}
+
+model WishHistory {
+  id           String     @id @default(cuid())
+  wishedRarity RarityType
+  isSoftPity   Boolean    @default(false)
+  isHardPity   Boolean    @default(false)
+  Card         Card       @relation(fields: [cardId], references: [id])
+  cardId       String
+  User         User       @relation(fields: [userId], references: [id])
+  userId       String
+  Wish         Wish       @relation(fields: [wishId], references: [id])
+  wishId       String
+  createdAt    DateTime   @default(now())
+
+  @@index([wishedRarity])
+}
+
+// END WISH
+
+// ANALYTICS
+
+model CommandAnalytics {
+  command String
+  time    DateTime @default(now()) @db.Timestamptz()
+
+  @@unique([command, time])
+  @@index([command, time])
+  @@map("command_analytics")
+}

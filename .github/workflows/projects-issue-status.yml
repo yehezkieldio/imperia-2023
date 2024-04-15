@@ -1,0 +1,45 @@
+name: Project Issue Status Automations
+on:
+    issues:
+        types:
+            - opened
+            - closed
+
+jobs:
+    issue-opened:
+        name: issue_opened
+        runs-on: ubuntu-latest
+        if: github.event_name == 'issues' && github.event.action == 'opened'
+        steps:
+            - name: Move issue to New
+              uses: leonsteinhaeuser/project-beta-automations@v2.1.0
+              with:
+                  gh_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+                  user: aeviterna
+                  project_id: 2
+                  resource_node_id: ${{ github.event.issue.node_id }}
+                  status_value: New
+    issue-closed:
+        name: issue_closed
+        runs-on: ubuntu-latest
+        if: github.event_name == 'issues' && github.event.action == 'closed'
+        steps:
+            - name: Check issue for done label
+              uses: actions/github-script@v4
+              with:
+                  github-token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+                  script: |
+                      const issue = await github.issues.get({
+                        owner: context.repo.owner,
+                        repo: context.repo.repo,
+                        issue_number: context.issue.number
+                      });
+                      core.setOutput('has_done_label', issue.data.labels.some(label => label.name === 'status: done'))
+            - name: Move issue to Done
+              uses: leonsteinhaeuser/project-beta-automations@v2.1.0
+              with:
+                  gh_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+                  user: aeviterna
+                  project_id: 2
+                  resource_node_id: ${{ github.event.issue.node_id }}
+                  status_value: Done

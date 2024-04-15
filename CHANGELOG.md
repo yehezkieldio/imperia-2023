@@ -1,0 +1,138 @@
+# Changelog
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [2.1.0](https://github.com/aeviterna/imperia/compare/v2.0.0...v2.1.0) (2023-03-25)
+
+### Features
+
+-   **RewardsClaim:** add periodic claimable rewards ([c630d3c](https://github.com/aeviterna/imperia/commit/c630d3caa9c47fddb95ed40a261d687726c2ddc3)), closes [#34](https://github.com/aeviterna/imperia/issues/34)
+-   **TermsOfServiceHandler:** implement user registration ([8fc1950](https://github.com/aeviterna/imperia/commit/8fc1950f3d64d3073132a5519eba4ca26589963e)), closes [#35](https://github.com/aeviterna/imperia/issues/35)
+
+### Bug Fixes
+
+-   **About:** add OAuth2Scopes to Invite URL ([ad0b43b](https://github.com/aeviterna/imperia/commit/ad0b43b9ea0b4a9407f17821e5c9a9409318f44d))
+-   **deps:** update dependency discord.js to v14.8.0 ([ffc9474](https://github.com/aeviterna/imperia/commit/ffc9474011b5e6c63492fd30ea9fd3bc567cf5e0))
+-   **deps:** update dependency discord.js to v14.8.0 ([972ace4](https://github.com/aeviterna/imperia/commit/972ace42f0b6691a344f147e3e14d3e5e42acc14))
+-   **Register:** add register cmd and tos interaction handler ([#35](https://github.com/aeviterna/imperia/issues/35)) ([2f5d394](https://github.com/aeviterna/imperia/commit/2f5d3949d43ff95c8db08152be18cfc2c6e37151))
+
+### Refactor
+
+-   **ClientReady:** change activity presence ([9cf904d](https://github.com/aeviterna/imperia/commit/9cf904d85fd08801f4f31aa4f6b07c0e9de84920))
+-   **container:** add services into container ([977d78a](https://github.com/aeviterna/imperia/commit/977d78a5ade82cf202f7d6e95ac7393d3f59bc82))
+-   **EconomyService:** add log for failed user update ([83161d1](https://github.com/aeviterna/imperia/commit/83161d17646ce1f7d2cf3dfa50347f18bf161ff0))
+-   **ImperiaCommand:** subcommand options instead of command ([2fe1659](https://github.com/aeviterna/imperia/commit/2fe1659edc15efda53775cdc0bec1a73c735a964))
+-   refactor two command classes to the proper class names ([4687056](https://github.com/aeviterna/imperia/commit/468705665e90154ff47f9ba48c2d3397f0771008))
+
+## 2.0.0 (2023-03-20)
+
+### ⚠ BREAKING CHANGES
+
+-   Refactor major things
+-   user repository
+-   prisma schema normalization (i think)
+
+### Features
+
+-   a working gacha system? ([3531aa6](https://github.com/aeviterna/imperia/commit/3531aa6353bb8e519a1f7d4cf0632cae3bb79d85))
+-   **about:** add new about command, a refactor a variety of things ([1d0757a](https://github.com/aeviterna/imperia/commit/1d0757a3f9e38166971c972f40031658e2858034))
+-   account command ([d10165b](https://github.com/aeviterna/imperia/commit/d10165b4e0c9d5d320c8ebf779adf17353665098))
+-   account information and cards ([c3b1564](https://github.com/aeviterna/imperia/commit/c3b1564b701de6b66732400187dd31ff5ded2411))
+-   Add a decent implementation of card wish ([63264a0](https://github.com/aeviterna/imperia/commit/63264a089d1a21a40fb16069573f9cb38ec5df26))
+-   add a registered users only precondition ([b4798b8](https://github.com/aeviterna/imperia/commit/b4798b8be24794d47433752c31896224e3eb3083))
+-   add Card, Duel, Skill, and Wish repositories to container ([d1c7022](https://github.com/aeviterna/imperia/commit/d1c70228c20c247e98e08f692e11cefbb2940add))
+-   Add developer only precondition ([14cf747](https://github.com/aeviterna/imperia/commit/14cf747eeff8615569e5bec301de5b97eb0c682e))
+-   add lastWeeklyClaim ([ff00628](https://github.com/aeviterna/imperia/commit/ff0062828a2f2aa94e3a6a81cea3d5eb8afd2e72))
+-   add new emoji (red cross) ([3900564](https://github.com/aeviterna/imperia/commit/390056424c8db7ef3a52efccf3ff1b731b86f4c6))
+-   add shard start command ([31e1785](https://github.com/aeviterna/imperia/commit/31e1785d4615357f9989b45fd37fc49726b0f819))
+-   Add some development commands ([bc1656d](https://github.com/aeviterna/imperia/commit/bc1656d40a7f5ef3ad6e41d43ac7e2636cc4b063))
+-   add UserRepository to the container and create DeveloperOnly precondition ([2d13ea5](https://github.com/aeviterna/imperia/commit/2d13ea5d541f4e61df8ec051c175b73f4b76eb40))
+-   added time format for day ([cd05d46](https://github.com/aeviterna/imperia/commit/cd05d46a1b7322fcbd99fdac45273fcdfb2488bf))
+-   adding client extension ([ce49ef1](https://github.com/aeviterna/imperia/commit/ce49ef1f919e0b02889c9da2908d79d1f66a4bd3))
+-   adding embed property ([6d33eda](https://github.com/aeviterna/imperia/commit/6d33eda0a3629df083b9b3cc28c5e296fcf58012))
+-   adding emojis ([f704a45](https://github.com/aeviterna/imperia/commit/f704a454348f049196bcf1db705545a88a6da5d8))
+-   adding getRandomInt function ([9a17b07](https://github.com/aeviterna/imperia/commit/9a17b07563479d6051c3311955b84ff031e161f7))
+-   adding getRandomInt function ([d7e1147](https://github.com/aeviterna/imperia/commit/d7e1147fc2880734686195e1da4c013bb584241e))
+-   adding index ([bf12c80](https://github.com/aeviterna/imperia/commit/bf12c8015bc22245a25f0b57d68549e1f69bc0ee))
+-   adding more emojis ([4fbff37](https://github.com/aeviterna/imperia/commit/4fbff371a1eaa26838c29e4c56e76bf49079e6f2))
+-   adding namespace ([aa357e2](https://github.com/aeviterna/imperia/commit/aa357e2f60fd1b3541dbd5593fa9c6e24c870b25))
+-   adding utils property ([8b8e27a](https://github.com/aeviterna/imperia/commit/8b8e27ae9c8c26fb5d935a613e595e007d8a87c4))
+-   avatar command ([4a73233](https://github.com/aeviterna/imperia/commit/4a732339d4c54ea283cb981c51b89086ce79aba8))
+-   card repository ([0d5ef1a](https://github.com/aeviterna/imperia/commit/0d5ef1ad33d690fb5cb7b5b15016492489d5cb85))
+-   **card:** add new methods for getting and manipulating cards ([0d48f2f](https://github.com/aeviterna/imperia/commit/0d48f2ff12587cb6765122f3a0664854860ff6b5))
+-   **card:** add new methods for getting and manipulating user cards ([03a56e3](https://github.com/aeviterna/imperia/commit/03a56e3a63aef908c79be8d4f5c593636dd52531))
+-   container for repositories ([4d56031](https://github.com/aeviterna/imperia/commit/4d56031d92298859858eeb24704d3cc788d19bc0))
+-   cooldown command ([8e82adc](https://github.com/aeviterna/imperia/commit/8e82adcaf705af781cdf732ebc533f81327580a4))
+-   create stats command ([f54f48d](https://github.com/aeviterna/imperia/commit/f54f48d3ddff3a217839dc22545096b593005f99))
+-   create Test command for development purposes and update TEST_SERVERS ([923730b](https://github.com/aeviterna/imperia/commit/923730be702c5552c1990ca23bca5f636fcbd36c))
+-   daily command ([b96297d](https://github.com/aeviterna/imperia/commit/b96297d64c350bc02e0851921f0e75880e1fe576))
+-   database design, prisma, etc ([2250fdd](https://github.com/aeviterna/imperia/commit/2250fdd18f3ecc2881e2a088a0e8a55f7226b727))
+-   database repositories ([079f669](https://github.com/aeviterna/imperia/commit/079f669136343a3c85eb7695e1e2c00bf092fe56))
+-   duel! ([785cafb](https://github.com/aeviterna/imperia/commit/785cafb3d468bb0c330a4832179522bbe4a75287))
+-   duel? ([3a2c15b](https://github.com/aeviterna/imperia/commit/3a2c15b132c9f9783d1cdeda64c58ae76d1ec5b8))
+-   **duel:** add method for getting user card statistics ([12ba52b](https://github.com/aeviterna/imperia/commit/12ba52b030db103d27b25599b88c7a8504fdcf2a))
+-   **duel:** add new methods for getting and manipulating duels ([3a1d550](https://github.com/aeviterna/imperia/commit/3a1d5507d1a860dd9fcced5c8c82c6fff7721acb))
+-   **duel:** add typings for duel, duel round, duel action, etc ([4a54dfa](https://github.com/aeviterna/imperia/commit/4a54dfab5ccf062a73bbbfe02f3ec0e374711815))
+-   early gacha ([6911230](https://github.com/aeviterna/imperia/commit/6911230cdd8c8369f8a4dfdb8191cd4a72c9b8cd))
+-   economy servie ([1001060](https://github.com/aeviterna/imperia/commit/1001060961311f638a8f774168bbaccbf1680985))
+-   **economy:** add methods to add and remove crystals and fates ([5f84b75](https://github.com/aeviterna/imperia/commit/5f84b758d492200e7904dad5e0cdab8956e91ab8))
+-   env schema ([1d01bfe](https://github.com/aeviterna/imperia/commit/1d01bfe8b6720eee7b81713cbcda78d25baaadf8))
+-   experimental duel prisma schema ([e2cb596](https://github.com/aeviterna/imperia/commit/e2cb596347a642ab442fa75093b1df4fcad84e49))
+-   finished roll gacha service ([f0d8ea0](https://github.com/aeviterna/imperia/commit/f0d8ea05353edb5288ff83695e0bce233a664a80))
+-   gacha multiple rarity cards ([70612b8](https://github.com/aeviterna/imperia/commit/70612b8af33bb20743384d8581978fb1ad5263e8))
+-   gacha service ([5b1aa6c](https://github.com/aeviterna/imperia/commit/5b1aa6cf8742c1ffed8bd512bfedae302b69ac46))
+-   hourly command ([7d9912b](https://github.com/aeviterna/imperia/commit/7d9912b4ae4fcc09f3e6315c2a010646276e89e7))
+-   i have no idea what am doing ([6d13b3f](https://github.com/aeviterna/imperia/commit/6d13b3f4c7406b070349dca1839f246a798ef0f7))
+-   **identifier:** add new repository errors in ImperiaIdentifiers ([a666f49](https://github.com/aeviterna/imperia/commit/a666f49142feb93257455cdd61ec44d581c1c94f))
+-   level progression ([0f01d6b](https://github.com/aeviterna/imperia/commit/0f01d6b1091b302e724828a76d8631f48adbaa43))
+-   modifiers developer commands ([3776846](https://github.com/aeviterna/imperia/commit/37768467c4991f2de35a9b65d9ce784786c3570f))
+-   more struct extensions ([45570e3](https://github.com/aeviterna/imperia/commit/45570e3da650dfca4517500b27283b9c29fda43c))
+-   **prisma:** add new Prisma includes options for various models ([c942d7e](https://github.com/aeviterna/imperia/commit/c942d7e1e8c2c7bf73f1ac5a2bc27513f2244e86))
+-   **prisma:** add typings for various Prisma models and their relationships ([33fbc15](https://github.com/aeviterna/imperia/commit/33fbc15b16c6afc59955e29fc502e9a33f9fc5ca))
+-   **progression:** add methods to manipulate user card progression ([324a797](https://github.com/aeviterna/imperia/commit/324a7970eb3d2edb030a62af0b744b22c3814bed))
+-   **progression:** add progression service ([4858da3](https://github.com/aeviterna/imperia/commit/4858da373c3dba8bb202486d511f973e3c849b4e))
+-   **rarity:** add new methods for getting and manipulating rarities ([042cae6](https://github.com/aeviterna/imperia/commit/042cae68cc347fd4a56bff7565449fd492626f14))
+-   register command ([ae9c364](https://github.com/aeviterna/imperia/commit/ae9c3644b91a94527a7c9ef50b78656994db8011))
+-   **skill:** add new methods for getting and manipulating skills ([3e55c70](https://github.com/aeviterna/imperia/commit/3e55c703135260c787926ba8a1ba641f2eb5a8b5))
+-   **skill:** add typings for skill, skillcard, and usercard ([e11bcf5](https://github.com/aeviterna/imperia/commit/e11bcf5786640b2dedf2c6d634dbf2b6edc2b2d6))
+-   unmentioned changes ([502d7b0](https://github.com/aeviterna/imperia/commit/502d7b03e0802ca63f2fe182643afe650ed0acc8))
+-   user card entry ([4f26e36](https://github.com/aeviterna/imperia/commit/4f26e3639792df5ba719f7d6a58c5ac83c650598))
+-   user model repository and schema ([94a201c](https://github.com/aeviterna/imperia/commit/94a201c994abd201049f18e3097ec375865aa474))
+-   **user:** add create, update, and delete to UserRepository and implement corresponding methods ([17f3f11](https://github.com/aeviterna/imperia/commit/17f3f1162bfb367cf8d9e404bafdd870df6b8565))
+-   **user:** create UserRepository with getUserById method, and add Prisma typings and includes ([e2c20cc](https://github.com/aeviterna/imperia/commit/e2c20ccba4952693528c01b9fa11fbc8392af47e))
+-   utility functions ([6b3d37d](https://github.com/aeviterna/imperia/commit/6b3d37d07a6b86372e01b2d28d9b7dfe1d9ba913))
+-   weekly command ([c343314](https://github.com/aeviterna/imperia/commit/c3433141886409ef807746b29ac09f87fbacd514))
+-   **wish:** add card wishing functionality ([282fbd8](https://github.com/aeviterna/imperia/commit/282fbd8ac7e9dbd0d36f91a30fbb553f9e8e5242))
+-   **wish:** add new methods for probability distribution ([9aa5ea7](https://github.com/aeviterna/imperia/commit/9aa5ea7f236d4e84f25ac114d73c1a3fb2452a67))
+-   **wish:** add new methods to get and manipulate wishes and wish histories ([fb79a8c](https://github.com/aeviterna/imperia/commit/fb79a8c748716d0b49e7e8ed0b3b0f63a0638907))
+-   **wish:** add support for Wish and WishHistory in typings and WishRepository ([7c3f90b](https://github.com/aeviterna/imperia/commit/7c3f90b7d5b7dd17d755386da3136eb584f6592e))
+
+### Bug Fixes
+
+-   [#11](https://github.com/aeviterna/imperia/issues/11) ([a4c9c46](https://github.com/aeviterna/imperia/commit/a4c9c4606c1854c23d73c9e12819853a09037472))
+-   [#12](https://github.com/aeviterna/imperia/issues/12) ([72c2599](https://github.com/aeviterna/imperia/commit/72c2599fc52a38fa13c28481e069b7899c0374c7))
+-   [#3](https://github.com/aeviterna/imperia/issues/3) ([21057fc](https://github.com/aeviterna/imperia/commit/21057fc4f4a97dd887bc8142739197b409dfb6a4))
+-   [#5](https://github.com/aeviterna/imperia/issues/5) update lastClaim date ([08ace79](https://github.com/aeviterna/imperia/commit/08ace7965b906145232fb957da2e4b275f6f5ce3))
+-   broken formatting ([ce8479c](https://github.com/aeviterna/imperia/commit/ce8479cd7efca421360d4e9aa436e170726bb429))
+-   broken formatting 2 ([1e2334a](https://github.com/aeviterna/imperia/commit/1e2334a9fa109972a2d53449e55e41e28d54db2a))
+-   cooldown command list broken ([9506511](https://github.com/aeviterna/imperia/commit/95065116ad10195b70a894274cb810c03a19a38e))
+-   daily command broken ([34f6f09](https://github.com/aeviterna/imperia/commit/34f6f097e2a4d8e0c887bb2918911c27da626561))
+-   hourly command broken ([415bcf9](https://github.com/aeviterna/imperia/commit/415bcf94c7bacbc1a10130b8e942883e3b78a8b1))
+-   improve calculations of accuracy ([f90484b](https://github.com/aeviterna/imperia/commit/f90484ba7bf3a150a9cbf3c992da7d329057f02e))
+-   improve calculations of accuracy and speed ([0e76f60](https://github.com/aeviterna/imperia/commit/0e76f60b80038e2cf2f273bdc36d4c25207ca142))
+-   is user register precondition user repo ([846e77b](https://github.com/aeviterna/imperia/commit/846e77bb7519bc570be8e8b2828c9710eafe37bd))
+-   merge conflitcs ([853ccf5](https://github.com/aeviterna/imperia/commit/853ccf55f370544bd9ff03728dfc94f0e74f64f9))
+-   precondition not working ([1066119](https://github.com/aeviterna/imperia/commit/1066119d843bab6d23db5f1519160dfbc4da01af))
+-   Refactor everything [#10](https://github.com/aeviterna/imperia/issues/10) ([8660f09](https://github.com/aeviterna/imperia/commit/8660f09442c0f61e6b6a19c807b3fc8cb94ef958))
+-   type on balance ([895eb25](https://github.com/aeviterna/imperia/commit/895eb255cc001b025868275ade8b62adec30c3f4))
+-   typo class name ([5c786a7](https://github.com/aeviterna/imperia/commit/5c786a790527bb93f86c6d140a8aca982c43e871))
+-   typo on interaction.user.id ([8d8175c](https://github.com/aeviterna/imperia/commit/8d8175c3146854839a6dc02df69ac973c1e78134))
+-   unnecessary reply ([42c5098](https://github.com/aeviterna/imperia/commit/42c509858bd28b086b538ff1119a858bdd811f0a))
+-   **user:** Forgot about rewards claim model ([a964862](https://github.com/aeviterna/imperia/commit/a9648627aa40e052f8d8c429418f1d356a774bdb))
+-   weekly command broken ([e59915d](https://github.com/aeviterna/imperia/commit/e59915d75f3997ee8e9acb4f29bb3a4982bf02d7))
+-   wrong emoji usage ([0c24636](https://github.com/aeviterna/imperia/commit/0c246361aec57d084dfb36aed21fee6c25df5f60))
+-   wrong usage description ([e277632](https://github.com/aeviterna/imperia/commit/e277632f478ae33ab0c181d8ee2f541b31c78f1d))
+
+-   prisma schema normalization (i think) ([0b8dd62](https://github.com/aeviterna/imperia/commit/0b8dd6249b4ed175a5cd4e48aef0bbf75b73e793))
+-   Refactor major things ([30641c7](https://github.com/aeviterna/imperia/commit/30641c7892143cb1d040b835ddbe7bb9b5bb07f2))
+-   user repository ([9419b4c](https://github.com/aeviterna/imperia/commit/9419b4c501ebe4d9d60065397fa9d3362979f6da))

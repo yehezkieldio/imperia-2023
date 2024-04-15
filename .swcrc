@@ -1,0 +1,29 @@
+{
+    "jsc": {
+        "minify": {
+            "compress": {
+                "unused": true
+            },
+            "mangle": true
+        },
+        "parser": {
+            "syntax": "typescript",
+            "decorators": true
+        },
+        "target": "es2020",
+        "paths": {
+            "#commands/*": ["./commands/*"],
+            "#listeners/*": ["./listeners/*"],
+            "#interactionHandlers/*": ["./interactionHandlers/*"],
+            "#services/*": ["./services/*"],
+            "#repositories/*": ["./repositories/*"],
+            "#libraries/*": ["./libraries/*"],
+            "#utils/*": ["./libraries/utilities/*"],
+            "#typings/*": ["./libraries/typings/*"]
+        },
+        "baseUrl": "./src"
+    },
+    "module": {
+        "type": "commonjs"
+    }
+}

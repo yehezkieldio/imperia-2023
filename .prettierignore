@@ -1,0 +1,8 @@
+prisma/schema.prisma
+yarn.lock
+tsconfig.eslint.json
+tsconfig.json
+node_modules
+dist
+.yarn
+/.env
